@@ -35,7 +35,7 @@ node {
 
  }
 	
-def project_terra="terrafrom-code/Tomcat-Deploy"
+def project_terra="terrafrom-code/Tomcat-deploy"
 dir(project_terra) {
    stage('Prod Deployment on AWS'){
    sh label: 'terraform', script: '/usr/bin/terraform  init'
