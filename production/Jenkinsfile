@@ -5,7 +5,7 @@ node {
 
 
   stage('GIT CheckOut') {
-    git branch: 'production', url: 'https://github.com/Kiba87/mindtree-devops-27April2020.git'
+    git branch: 'production', url: 'https://github.com/Kiba87/mindtree-course-test.git'
   }
 
   def project_path = "ansible-code/05-Tomcat"
@@ -35,7 +35,7 @@ node {
 
  }
 	
-def project_terra="terrafrom-code/04-Tomcat-Deploy"
+def project_terra="terrafrom-code/Tomcat-Deploy"
 dir(project_terra) {
    stage('Prod Deployment on AWS'){
    sh label: 'terraform', script: '/usr/bin/terraform  init'
