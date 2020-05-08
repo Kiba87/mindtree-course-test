@@ -24,7 +24,7 @@ resource "null_resource" "remote-exec-1" {
     connection {
     user        = "ubuntu"
     type        = "ssh"
-    private_key = "${file(var.pvt_key)}"
+    private_key = "${file("/root/.ssh/balu-aws.pem")}"
     host        = "${aws_instance.backend.public_ip}"
   }
 
@@ -44,7 +44,7 @@ provisioner "local-exec" {
         echo "[jenkins-ci]"| tee -a jenkins-ci.ini;
         export ANSIBLE_HOST_KEY_CHECKING=False;
         echo "${aws_instance.backend.public_ip}" | tee -a jenkins-ci.ini;
-        ansible-playbook  --key=${var.pvt_key} -i jenkins-ci.ini ./ansible-code/05-Tomcat/playbook.yaml -u ubuntu -v
+        ansible-playbook  --key=/root/.ssh/balu-aws.pem -i jenkins-ci.ini ./ansible-code/05-Tomcat/playbook.yaml -u ubuntu -v
     EOT
 }
 }
